@@ -86,15 +86,6 @@
 			<artifactId>lombok</artifactId>
 			<optional>true</optional>
 		</dependency>
-
-		<!-- You can easily generate your own configuration metadata file from items annotated with
-		@ConfigurationProperties by using the spring-boot-configuration-processor jar. The jar includes a Java
-		annotation processor which is invoked as your project is compiled. -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-configuration-processor</artifactId>
-			<optional>true</optional>
-		</dependency>
 	</dependencies>
 
 	<!-- Build settings -->
