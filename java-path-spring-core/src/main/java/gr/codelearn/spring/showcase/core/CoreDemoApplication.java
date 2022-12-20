@@ -16,13 +16,11 @@ public class CoreDemoApplication {
 	public static void main(String[] args) {
 		logger.info("Starting program execution");
 
-		TravelService myTravel = new TravelService();
-
-		myTravel.setMyVehicle(new Car());
+		TravelService myTravel = new TravelService(new Car());
 		myTravel.startJourney();
 
-		myTravel.setMyVehicle(new Bike());
-		myTravel.startJourney();
+		TravelService anotherTravel = new TravelService(new Bike());
+		anotherTravel.startJourney();
 	}
 
 }
