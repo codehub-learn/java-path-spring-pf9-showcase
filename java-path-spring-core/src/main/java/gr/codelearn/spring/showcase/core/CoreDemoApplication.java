@@ -5,10 +5,8 @@ import gr.codelearn.spring.showcase.core.domain.Car;
 import gr.codelearn.spring.showcase.core.service.TravelService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 
-@SpringBootApplication
 public class CoreDemoApplication {
 	//remember to perform a clean after adding logging configuration, before executing class
 	private static final Logger logger = LoggerFactory.getLogger(CoreDemoApplication.class);

@@ -11,15 +11,15 @@ import org.slf4j.LoggerFactory;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Bike implements Vehicle{
-	private final Logger logger = LoggerFactory.getLogger(Bike.class);
+public class Engine {
 
-	private Engine engine;
+	private final Logger logger = LoggerFactory.getLogger(Engine.class);
 
-	@Override
-	public void start() {
-		logger.info("Travelling by Bike");
-		engine.ignite();
+	private String cc;
+	private EngineType engineType;
+
+	public void ignite() {
+		logger.info("Starting engine of type {}", this.engineType);
 	}
 
 }
