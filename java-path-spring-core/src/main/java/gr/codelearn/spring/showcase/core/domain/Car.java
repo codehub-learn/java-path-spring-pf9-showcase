@@ -9,21 +9,14 @@ import org.slf4j.LoggerFactory;
 @Data
 @Builder
 @NoArgsConstructor
-//@AllArgsConstructor
+
 public class Car implements Vehicle{
 
 	private final Logger logger = LoggerFactory.getLogger(Car.class);
 
-	public Car(final Engine engine) {
-		this.engine = engine;
-	}
-
-	private Engine engine;
-
 	@Override
 	public void start() {
 		logger.info("Travelling by Car");
-		engine.ignite();
 	}
 
 
