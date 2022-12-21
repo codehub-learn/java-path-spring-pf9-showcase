@@ -10,7 +10,6 @@ import org.springframework.stereotype.Component;
 @Data
 @Builder
 @NoArgsConstructor
-@Component
 public class Bike implements Vehicle{
 	private final Logger logger = LoggerFactory.getLogger(Bike.class);
 

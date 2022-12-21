@@ -1,19 +1,18 @@
 package gr.codelearn.spring.showcase.core.domain;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Component;
 
 @Data
 @Builder
-@NoArgsConstructor
-@Component
+@AllArgsConstructor
 public class Car implements Vehicle{
-
 	private final Logger logger = LoggerFactory.getLogger(Car.class);
+
+	private final String make;
 
 	@Override
 	public void start() {
