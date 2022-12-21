@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: Spring Core Demo Application - PF9
+my:
+  custom:
+    property: 10
