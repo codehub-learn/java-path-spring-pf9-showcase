@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN" monitorInterval="30">
+	<Properties>
+		<Property name="LOG_PATTERN">
+			%d{yyyy-MM-dd HH:mm:ss.SSS} %5p ${hostName} - [%15.15t] [%-35.35c{1.}] : %m%n%ex
+		</Property>
+	</Properties>
+
+	<Appenders>
+		<Console name="ConsoleAppender" target="SYSTEM_OUT" follow="true">
+			<PatternLayout pattern="${LOG_PATTERN}"/>
+		</Console>
+
+		<!-- Rolling Random Access File Appender with a default buffer of 256 * 1024 bytes -->
+		<RollingRandomAccessFile name="DefaultAppender"
+								 fileName="logs/java-path-spring-default.log"
+								 filePattern="logs/java-path-spring-default-%d{yyyy-MM-dd}.zip">
+			<PatternLayout>
+				<Pattern>${LOG_PATTERN}</Pattern>
+			</PatternLayout>
+			<Policies>
+				<TimeBasedTriggeringPolicy/>
+			</Policies>
+			<DefaultRolloverStrategy>
+				<Delete basePath="logs">
+					<IfLastModified age="30d"/>
+				</Delete>
+			</DefaultRolloverStrategy>
+		</RollingRandomAccessFile>
+
+		<!-- Rolling Random Access File Appender with a default buffer of 256 * 1024 bytes -->
+		<RollingRandomAccessFile name="DataAppender"
+								 fileName="logs/java-path-spring-data.log"
+								 filePattern="logs/java-path-spring-data-%d{yyyy-MM-dd}.zip">
+			<PatternLayout>
+				<Pattern>${LOG_PATTERN}</Pattern>
+			</PatternLayout>
+			<Policies>
+				<TimeBasedTriggeringPolicy/>
+			</Policies>
+			<DefaultRolloverStrategy>
+				<Delete basePath="logs">
+					<IfLastModified age="30d"/>
+				</Delete>
+			</DefaultRolloverStrategy>
+		</RollingRandomAccessFile>
+	</Appenders>
+
+	<Loggers>
+		<AsyncLogger name="gr.codelearn.spring" level="trace" additivity="false">
+			<AppenderRef ref="ConsoleAppender"/>
+			<AppenderRef ref="DefaultAppender"/>
+		</AsyncLogger>
+		<AsyncLogger name="org.springframework.web" level="debug" additivity="false">
+			<AppenderRef ref="ConsoleAppender"/>
+			<AppenderRef ref="DefaultAppender"/>
+		</AsyncLogger>
+		<AsyncLogger name="org.springframework.cache" level="trace" additivity="false">
+			<AppenderRef ref="ConsoleAppender"/>
+			<AppenderRef ref="DefaultAppender"/>
+		</AsyncLogger>
+		<AsyncLogger name="org.springframework" level="info" additivity="false">
+			<AppenderRef ref="ConsoleAppender"/>
+			<AppenderRef ref="DefaultAppender"/>
+		</AsyncLogger>
+		<AsyncLogger name="org.springframework.data" level="info" additivity="false">
+			<AppenderRef ref="ConsoleAppender"/>
+			<AppenderRef ref="DataAppender"/>
+		</AsyncLogger>
+		<AsyncLogger name="com.zaxxer.hikari" level="debug" additivity="false">
+			<AppenderRef ref="ConsoleAppender"/>
+			<AppenderRef ref="DataAppender"/>
+		</AsyncLogger>
+		<AsyncLogger name="org.hibernate.engine" level="debug" additivity="false">
+			<AppenderRef ref="ConsoleAppender"/>
+			<AppenderRef ref="DataAppender"/>
+		</AsyncLogger>
+		<AsyncLogger name="org.hibernate.stat" level="debug" additivity="false">
+			<AppenderRef ref="ConsoleAppender"/>
+			<AppenderRef ref="DataAppender"/>
+		</AsyncLogger>
+		<AsyncLogger name="org.hibernate.SQL" level="trace" additivity="false">
+			<AppenderRef ref="ConsoleAppender"/>
+			<AppenderRef ref="DataAppender"/>
+		</AsyncLogger>
+		<AsyncLogger name="org.hibernate.type.descriptor.sql.BasicBinder" level="trace" additivity="false">
+			<AppenderRef ref="ConsoleAppender"/>
+			<AppenderRef ref="DataAppender"/>
+		</AsyncLogger>
+		<AsyncLogger name="net.ttddyy.dsproxy.listener.logging.SLF4JQueryLoggingListener" level="info"
+					 additivity="false">
+			<AppenderRef ref="ConsoleAppender"/>
+			<AppenderRef ref="DataAppender"/>
+		</AsyncLogger>
+
+		<Root level="info">
+			<AppenderRef ref="ConsoleAppender"/>
+			<AppenderRef ref="DefaultAppender"/>
+		</Root>
+	</Loggers>
+</Configuration>
