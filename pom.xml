@@ -70,6 +70,10 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-log4j2</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
 		<!--
 		Asynchronous Logging @see https://logging.apache.org/log4j/2.x/manual/async.html
 		Hint:
