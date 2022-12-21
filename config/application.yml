@@ -1,0 +1,5 @@
+my:
+  custom:
+    property: 99
+# all properties contained in a /config folder at the level of the project/jar will override the application.yml
+# of the file contained in the project. This is the so-called externalization of configuration properties
