@@ -1,10 +1,16 @@
 package gr.codelearn.spring.showcase.core.service;
 
 import gr.codelearn.spring.showcase.core.domain.Vehicle;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
 
+@Component
 public class AutowiredInjectedTravelService {
 
 	//This is the dependency
+	@Autowired
+	@Qualifier("bike")
 	private Vehicle vehicle;
 
 	public AutowiredInjectedTravelService() {
