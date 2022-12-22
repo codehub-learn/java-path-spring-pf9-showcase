@@ -1,11 +1,13 @@
 spring:
   application:
     name: Spring Core Demo Application - PF9
+  profiles:
+    active: dev
 my:
   custom:
     property: 10
 myproperties:
-  threadPool: 40
+  threadPool: 5
   email: example@development.com
   servers:
     - www.abc.dev.com

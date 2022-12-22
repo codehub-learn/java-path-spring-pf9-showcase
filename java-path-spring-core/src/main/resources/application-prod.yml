@@ -1,0 +1,7 @@
+#properties in this file will only be used when spring.profiles.active=prod profile is set
+myproperties:
+  threadPool: 30
+  email: example@prod.com
+  servers:
+    - www.abc.prod.com
+    - www.xyz.prod.com
