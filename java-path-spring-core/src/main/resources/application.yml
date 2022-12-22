@@ -2,7 +2,7 @@ spring:
   application:
     name: Spring Core Demo Application - PF9
   profiles:
-    active: dev
+    active: dev, diesel #change profile to petrol, to inject petrol engine to vehicles
 my:
   custom:
     property: 10
