@@ -1,0 +1,63 @@
+spring:
+  application:
+    name: PF E-Shop Demo app
+  data:
+    jpa:
+      repositories:
+        bootstrap-mode: deferred
+        enabled: true
+  datasource:
+    driver-class-name: org.h2.Driver
+    hikari:
+      auto-commit: false
+      connection-test-query: select 1 from dual;
+      connection-timeout: 10000
+      idle-timeout: 30000
+      max-lifetime: 60000
+      maximum-pool-size: 10
+      minimum-idle: 1
+      pool-name: eshopConnectionPooling
+      transaction-isolation: TRANSACTION_READ_COMMITTED
+      username: sa
+      password: sa
+      data-source-properties:
+        cachePrepStmts: true
+        prepStmtCacheSize: 250
+        prepStmtCacheSqlLimit: 2048
+    type: com.zaxxer.hikari.HikariDataSource
+    url: jdbc:h2:file:~/eshop_pf9;IFEXISTS=FALSE;AUTO_SERVER=TRUE;
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+  jpa:
+    generate-ddl: true
+    hibernate:
+      ddl-auto: create #If an import.sql exists in resources, it will be also executed
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+      use-new-id-generator-mappings: true
+    open-in-view: false
+    properties:
+      hibernate:
+        batch_versioned_data: true
+        dialect: org.hibernate.dialect.H2Dialect
+        jdbc:
+          batch_size: 1000
+        format_sql: true
+        order_inserts: true
+        order_updates: true
+        query:
+          in_clause_parameter_padding: true
+        generate_statistics: false # NOT a production setting
+        session:
+          events:
+            log:
+              LOG_QUERIES_SLOWER_THAN_MS: 10 # NOT a production setting
+    show-sql: true
+  sql:
+    init:
+      # Mode to apply when determining if DataSource initialization should be performed using the available DDL (schema
+      # .sql) and DML (data.sql) scripts.
+      mode: EMBEDDED
+      platform: h2
