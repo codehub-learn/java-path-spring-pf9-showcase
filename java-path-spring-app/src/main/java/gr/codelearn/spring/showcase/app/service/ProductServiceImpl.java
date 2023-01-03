@@ -20,7 +20,7 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public Product create(final Product product) {
 		logger.trace("Creating {}.", product);
-		return productRepository.create(product);
+		return productRepository.save(product);
 	}
 
 	@Override
@@ -40,7 +40,7 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public void update(final Product product) {
 		logger.trace("Updating {}.", product);
-		productRepository.update(product);
+		productRepository.save(product);
 	}
 
 	@Override
@@ -51,7 +51,7 @@ public class ProductServiceImpl implements ProductService {
 
 	@Override
 	public void deleteById(final Long id) {
-		final Product entityFound = productRepository.get(id);
+		final Product entityFound = productRepository.getReferenceById(id);
 		logger.trace("Deleting {}.", entityFound);
 		productRepository.deleteById(id);
 	}
@@ -59,7 +59,7 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public boolean exists(final Product product) {
 		logger.trace("Checking whether {} exists.", product);
-		return productRepository.exists(product);
+		return productRepository.existsById(product.getId());
 	}
 
 	@Override
@@ -74,7 +74,7 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	public Product get(Long id) {
-		return productRepository.get(id);
+		return productRepository.getReferenceById(id);
 	}
 
 

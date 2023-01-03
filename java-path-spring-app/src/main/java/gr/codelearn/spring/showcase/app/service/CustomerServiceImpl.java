@@ -20,7 +20,7 @@ public class CustomerServiceImpl implements CustomerService {
 	@Override
 	public Customer create(final Customer customer) {
 		logger.trace("Creating {}.", customer);
-		return customerRepository.create(customer);
+		return customerRepository.save(customer);
 	}
 
 	@Override
@@ -40,7 +40,7 @@ public class CustomerServiceImpl implements CustomerService {
 	@Override
 	public void update(final Customer customer) {
 		logger.trace("Updating {}.", customer);
-		customerRepository.update(customer);
+		customerRepository.save(customer);
 	}
 
 	@Override
@@ -51,7 +51,7 @@ public class CustomerServiceImpl implements CustomerService {
 
 	@Override
 	public void deleteById(final Long id) {
-		final Customer entityFound = customerRepository.get(id);
+		final Customer entityFound = customerRepository.getReferenceById(id);
 		logger.trace("Deleting {}.", entityFound);
 		customerRepository.deleteById(id);
 	}
@@ -59,7 +59,7 @@ public class CustomerServiceImpl implements CustomerService {
 	@Override
 	public boolean exists(final Customer customer) {
 		logger.trace("Checking whether {} exists.", customer);
-		return customerRepository.exists(customer);
+		return customerRepository.existsById(customer.getId());
 	}
 
 	@Override
@@ -74,7 +74,7 @@ public class CustomerServiceImpl implements CustomerService {
 	}
 
 	public Customer get(Long id) {
-		return customerRepository.get(id);
+		return customerRepository.getReferenceById(id);
 	}
 
 

@@ -20,7 +20,7 @@ public class CategoryServiceImpl implements CategoryService {
 	@Override
 	public Category create(final Category category) {
 		logger.trace("Creating {}.", category);
-		return categoryRepository.create(category);
+		return categoryRepository.save(category);
 	}
 
 	@Override
@@ -40,7 +40,7 @@ public class CategoryServiceImpl implements CategoryService {
 	@Override
 	public void update(final Category category) {
 		logger.trace("Updating {}.", category);
-		categoryRepository.update(category);
+		categoryRepository.save(category);
 	}
 
 	@Override
@@ -51,7 +51,7 @@ public class CategoryServiceImpl implements CategoryService {
 
 	@Override
 	public void deleteById(final Long id) {
-		final Category entityFound = categoryRepository.get(id);
+		final Category entityFound = categoryRepository.getReferenceById(id);
 		logger.trace("Deleting {}.", entityFound);
 		categoryRepository.deleteById(id);
 	}
@@ -59,7 +59,7 @@ public class CategoryServiceImpl implements CategoryService {
 	@Override
 	public boolean exists(final Category category) {
 		logger.trace("Checking whether {} exists.", category);
-		return categoryRepository.exists(category);
+		return categoryRepository.existsById(category.getId());
 	}
 
 	@Override
@@ -74,7 +74,7 @@ public class CategoryServiceImpl implements CategoryService {
 	}
 
 	public Category get(Long id) {
-		return categoryRepository.get(id);
+		return categoryRepository.getReferenceById(id);
 	}
 
 	@Override

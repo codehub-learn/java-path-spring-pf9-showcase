@@ -1,26 +1,9 @@
 package gr.codelearn.spring.showcase.app.repository;
 
 import gr.codelearn.spring.showcase.app.domain.Category;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.util.List;
-
-public interface CategoryRepository {
-
-	Category create(Category category);
-
-	List<Category> createAll(List<Category> categories);
-
-	void update(Category category);
-
-	void delete(Category category);
-
-	void deleteById(Long id);
-
-	boolean exists(Category category);
-
-	Category get(Long id);
-
-	List<Category> findAll();
+public interface CategoryRepository extends JpaRepository<Category, Long> {
 	
 	Category findByDescription(String description);
 }

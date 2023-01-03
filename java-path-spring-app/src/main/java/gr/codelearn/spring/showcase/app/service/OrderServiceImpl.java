@@ -26,7 +26,7 @@ public class OrderServiceImpl implements OrderService {
 	@Override
 	public Order create(final Order order) {
 		logger.trace("Creating {}.", order);
-		return orderRepository.create(order);
+		return orderRepository.save(order);
 	}
 
 	@Override
@@ -46,7 +46,7 @@ public class OrderServiceImpl implements OrderService {
 	@Override
 	public void update(final Order order) {
 		logger.trace("Updating {}.", order);
-		orderRepository.update(order);
+		orderRepository.save(order);
 	}
 
 	@Override
@@ -57,7 +57,7 @@ public class OrderServiceImpl implements OrderService {
 
 	@Override
 	public void deleteById(final Long id) {
-		final Order entityFound = orderRepository.get(id);
+		final Order entityFound = orderRepository.getReferenceById(id);
 		logger.trace("Deleting {}.", entityFound);
 		orderRepository.deleteById(id);
 	}
@@ -65,7 +65,7 @@ public class OrderServiceImpl implements OrderService {
 	@Override
 	public boolean exists(final Order order) {
 		logger.trace("Checking whether {} exists.", order);
-		return orderRepository.exists(order);
+		return orderRepository.existsById(order.getId());
 	}
 
 	@Override
@@ -80,7 +80,7 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 	public Order get(Long id) {
-		return orderRepository.get(id);
+		return orderRepository.getReferenceById(id);
 	}
 
 
@@ -107,7 +107,7 @@ public class OrderServiceImpl implements OrderService {
 		}
 
 		if (!increasedQuantity) {
-			order.getOrderItems().add(newOrderItem(product, quantity));
+			order.getOrderItems().add(newOrderItem(order, product, quantity));
 		}
 
 		logger.debug("Product[{}] added to Order[{}]", product, order);
@@ -132,7 +132,7 @@ public class OrderServiceImpl implements OrderService {
 		}
 
 		order.getOrderItems().removeIf(oi -> oi.getProduct().getSerial().equals(product.getSerial()));
-		order.getOrderItems().add(newOrderItem(product, quantity));
+		order.getOrderItems().add(newOrderItem(order, product, quantity));
 
 		logger.debug("Product[{}] updated in Order[{}]", product, order);
 	}
@@ -167,8 +167,8 @@ public class OrderServiceImpl implements OrderService {
 		return order != null && !order.getOrderItems().isEmpty() && order.getCustomer() != null;
 	}
 
-	private OrderItem newOrderItem(Product product, int quantity) {
-		return OrderItem.builder().product(product).quantity(quantity).price(product.getPrice()).build();
+	private OrderItem newOrderItem(Order order, Product product, int quantity) {
+		return OrderItem.builder().order(order).product(product).quantity(quantity).price(product.getPrice()).build();
 	}
 
 	private BigDecimal giveDiscounts(Order order) {

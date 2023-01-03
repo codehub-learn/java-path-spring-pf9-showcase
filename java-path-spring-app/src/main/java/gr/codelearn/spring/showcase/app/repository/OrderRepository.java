@@ -1,24 +1,8 @@
 package gr.codelearn.spring.showcase.app.repository;
 
 import gr.codelearn.spring.showcase.app.domain.Order;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.util.List;
+public interface OrderRepository extends JpaRepository<Order, Long> {
 
-public interface OrderRepository  {
-
-	Order create(Order order);
-
-	List<Order> createAll(List<Order> orders);
-
-	void update(Order order);
-
-	void delete(Order order);
-
-	void deleteById(Long id);
-
-	boolean exists(Order order);
-
-	Order get(Long id);
-
-	List<Order> findAll();
 }
