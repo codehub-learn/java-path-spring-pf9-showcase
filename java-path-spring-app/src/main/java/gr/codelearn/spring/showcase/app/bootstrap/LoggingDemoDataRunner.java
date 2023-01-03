@@ -3,6 +3,7 @@ package gr.codelearn.spring.showcase.app.bootstrap;
 import gr.codelearn.spring.showcase.app.base.AbstractLogComponent;
 import gr.codelearn.spring.showcase.app.domain.Category;
 import gr.codelearn.spring.showcase.app.service.CategoryService;
+import gr.codelearn.spring.showcase.app.service.CustomerService;
 import gr.codelearn.spring.showcase.app.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
@@ -17,6 +18,8 @@ import java.util.Optional;
 public class LoggingDemoDataRunner extends AbstractLogComponent implements CommandLineRunner {
 
 	private final CategoryService categoryService;
+
+	private final CustomerService customerService;
 
 	private final ProductService productService;
 
@@ -46,6 +49,22 @@ public class LoggingDemoDataRunner extends AbstractLogComponent implements Comma
 		Optional.ofNullable(foundCategory).ifPresent(
 				category -> productService.findByCategory(foundCategory).forEach(p -> logger.info(p.toString())));
 		logger.info("=============================");
+		logger.info("=============================");
+
+		logger.info("=============================");
+		logger.info("====Finding Customer by Email====");
+		Optional.ofNullable(customerService.findByEmail("chrisperis@gmail.com")).ifPresent(
+				customer -> logger.info(customer.toString()));
+		logger.info("=============================");
+		logger.info("=============================");
+
+		logger.info("=============================");
+		logger.info("====Finding Product by Category ====");
+		Optional.ofNullable(foundCategory).ifPresent(
+				category -> logger.info(productService.findByCategory(foundCategory).toString()));
+		logger.info("=============================");
+		logger.info("=============================");
+
 		logger.info("=============================");
 	}
 

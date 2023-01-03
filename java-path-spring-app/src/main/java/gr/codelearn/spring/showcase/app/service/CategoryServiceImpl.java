@@ -6,6 +6,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.NoSuchElementException;
+import java.util.Optional;
+
 @Service
 @RequiredArgsConstructor
 public class CategoryServiceImpl extends BaseServiceImpl<Category> implements CategoryService {
@@ -20,7 +23,7 @@ public class CategoryServiceImpl extends BaseServiceImpl<Category> implements Ca
 
 	@Override
 	public Category findByDescription(final String description) {
-		return categoryRepository.findAll().stream().filter(c -> c.getDescription().equals(description)).findAny()
-								 .orElse(null);
+		return Optional.ofNullable(categoryRepository.findByDescription(description)).orElseThrow(
+				NoSuchElementException::new);
 	}
 }
