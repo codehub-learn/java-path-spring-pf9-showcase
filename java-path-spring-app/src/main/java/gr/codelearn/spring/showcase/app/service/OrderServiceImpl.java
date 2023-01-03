@@ -6,6 +6,9 @@ import gr.codelearn.spring.showcase.app.domain.OrderItem;
 import gr.codelearn.spring.showcase.app.domain.Product;
 import gr.codelearn.spring.showcase.app.domain.enumeration.PaymentMethod;
 import gr.codelearn.spring.showcase.app.repository.OrderRepository;
+import gr.codelearn.spring.showcase.app.transfer.KeyValue;
+import gr.codelearn.spring.showcase.app.transfer.PuchasesAndTotalCostPerCustomerDto;
+import gr.codelearn.spring.showcase.app.transfer.PurchasesAndCostPerCustomerCategoryDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
@@ -147,6 +150,21 @@ public class OrderServiceImpl extends BaseServiceImpl<Order> implements OrderSer
 	@Override
 	public List<Order> findAllLazy() {
 		return orderRepository.findAllLazy();
+	}
+
+	@Override
+	public List<KeyValue<String, BigDecimal>> findAverageOrderCostPerCustomer() {
+		return orderRepository.findAverageOrderCostPerCustomer();
+	}
+
+	@Override
+	public List<PurchasesAndCostPerCustomerCategoryDto> findTotalNumberAndCostOfPurchasesPerCustomerCategory() {
+		return orderRepository.findTotalNumberAndCostOfPurchasesPerCustomerCategory();
+	}
+
+	@Override
+	public List<PuchasesAndTotalCostPerCustomerDto> findTotalNumberAndTotalCostOfPurchasesPerCustomer() {
+		return orderRepository.findTotalNumberAndTotalCostOfPurchasesPerCustomer();
 	}
 
 }
