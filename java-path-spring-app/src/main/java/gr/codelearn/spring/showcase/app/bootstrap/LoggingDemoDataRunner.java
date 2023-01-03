@@ -10,6 +10,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
+import java.math.BigDecimal;
 import java.util.Optional;
 
 @Component
@@ -66,6 +67,12 @@ public class LoggingDemoDataRunner extends AbstractLogComponent implements Comma
 		logger.info("=============================");
 
 		logger.info("=============================");
+		logger.info("====Fetch data from products with provided query parameter====");
+		logger.info("Finding Products more expensive than");
+		BigDecimal productPriceLimit = new BigDecimal("1000");
+		productService.findProductsCostingMoreThan(new BigDecimal("1000")).forEach(
+				p -> logger.info("Product {} with price {} is more expensive than the {} €", p.getName(), p.getPrice(),
+								 productPriceLimit));
 	}
 
 }
