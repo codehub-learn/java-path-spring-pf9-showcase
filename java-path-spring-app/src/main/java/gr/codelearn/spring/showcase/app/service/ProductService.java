@@ -1,5 +1,6 @@
 package gr.codelearn.spring.showcase.app.service;
 
+import gr.codelearn.spring.showcase.app.domain.Category;
 import gr.codelearn.spring.showcase.app.domain.Product;
 
 import java.util.List;
@@ -27,4 +28,6 @@ public interface ProductService  {
 	Product get(Long id);
 	
 	Product findBySerial(String serial);
+
+	List<Product> findByCategory(Category category);
 }

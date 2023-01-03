@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @Service
 @RequiredArgsConstructor
@@ -70,7 +71,7 @@ public class CategoryServiceImpl implements CategoryService {
 
 	@Override
 	public Category find(Long id) {
-		return null;
+		return categoryRepository.findById(id).orElseThrow(NoSuchElementException::new);
 	}
 
 	public Category get(Long id) {
