@@ -5,6 +5,8 @@ import gr.codelearn.spring.showcase.app.domain.Order;
 import gr.codelearn.spring.showcase.app.domain.Product;
 import gr.codelearn.spring.showcase.app.domain.enumeration.PaymentMethod;
 
+import java.util.List;
+
 public interface OrderService extends BaseService<Order, Long> {
 
 	Order initiateOrder(Customer customer);
@@ -16,5 +18,9 @@ public interface OrderService extends BaseService<Order, Long> {
 	void removeItem(Order order, Product product);
 
 	Order checkout(Order order, PaymentMethod paymentMethod);
+
+	Order getLazy(Long id);
+
+	List<Order> findAllLazy();
 
 }

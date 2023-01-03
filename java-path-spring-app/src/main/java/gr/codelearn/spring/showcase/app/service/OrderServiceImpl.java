@@ -12,6 +12,9 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -130,6 +133,20 @@ public class OrderServiceImpl extends BaseServiceImpl<Order> implements OrderSer
 					 totalDiscount, finalCost);
 
 		return finalCost;
+	}
+
+	@Override
+	public Order getLazy(Long id) {
+		Optional<Order> order = orderRepository.getLazy(id);
+		if (order.isPresent()) {
+			return order.get();
+		}
+		throw new NoSuchElementException(String.format("There was no order found matching id %d.", id));
+	}
+
+	@Override
+	public List<Order> findAllLazy() {
+		return orderRepository.findAllLazy();
 	}
 
 }
