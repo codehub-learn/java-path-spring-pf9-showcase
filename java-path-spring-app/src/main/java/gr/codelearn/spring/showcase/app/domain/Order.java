@@ -12,12 +12,13 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 @Data
-@SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
+@SuperBuilder
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
 @Entity
@@ -27,7 +28,6 @@ public class Order extends BaseModel {
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	private Customer customer;
 
-	@NotNull
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(nullable = false)
 	private Date submitDate;
@@ -35,7 +35,7 @@ public class Order extends BaseModel {
 	@ToString.Exclude
 	@EqualsAndHashCode.Exclude
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
-	private Set<OrderItem> orderItems;
+	private final Set<OrderItem> orderItems = new HashSet<>();
 
 	@NotNull
 	@Enumerated(EnumType.STRING)
