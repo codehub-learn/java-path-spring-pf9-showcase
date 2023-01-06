@@ -27,11 +27,11 @@ import java.math.BigDecimal;
 @SequenceGenerator(name = "idGenerator", sequenceName = "ORDER_ITEMS_SEQ", initialValue = 1, allocationSize = 1)
 public class OrderItem extends BaseModel {
 	@NotNull
-	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+	@ManyToOne(fetch = FetchType.EAGER, optional = false)
 	private Product product;
 
 	@NotNull
-	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+	@ManyToOne(fetch = FetchType.EAGER, optional = false)
 	private Order order;
 
 	@NotNull

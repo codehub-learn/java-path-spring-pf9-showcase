@@ -55,7 +55,7 @@
 			<AppenderRef ref="ConsoleAppender"/>
 			<AppenderRef ref="DefaultAppender"/>
 		</AsyncLogger>
-		<AsyncLogger name="org.springframework.cache" level="trace" additivity="false">
+		<AsyncLogger name="org.springframework.cache" level="info" additivity="false">
 			<AppenderRef ref="ConsoleAppender"/>
 			<AppenderRef ref="DefaultAppender"/>
 		</AsyncLogger>
@@ -67,23 +67,23 @@
 			<AppenderRef ref="ConsoleAppender"/>
 			<AppenderRef ref="DataAppender"/>
 		</AsyncLogger>
-		<AsyncLogger name="com.zaxxer.hikari" level="debug" additivity="false">
+		<AsyncLogger name="com.zaxxer.hikari" level="info" additivity="false">
 			<AppenderRef ref="ConsoleAppender"/>
 			<AppenderRef ref="DataAppender"/>
 		</AsyncLogger>
-		<AsyncLogger name="org.hibernate.engine" level="debug" additivity="false">
+		<AsyncLogger name="org.hibernate.engine" level="info" additivity="false">
 			<AppenderRef ref="ConsoleAppender"/>
 			<AppenderRef ref="DataAppender"/>
 		</AsyncLogger>
-		<AsyncLogger name="org.hibernate.stat" level="debug" additivity="false">
+		<AsyncLogger name="org.hibernate.stat" level="info" additivity="false">
 			<AppenderRef ref="ConsoleAppender"/>
 			<AppenderRef ref="DataAppender"/>
 		</AsyncLogger>
-		<AsyncLogger name="org.hibernate.SQL" level="trace" additivity="false">
+		<AsyncLogger name="org.hibernate.SQL" level="info" additivity="false">
 			<AppenderRef ref="ConsoleAppender"/>
 			<AppenderRef ref="DataAppender"/>
 		</AsyncLogger>
-		<AsyncLogger name="org.hibernate.type.descriptor.sql.BasicBinder" level="trace" additivity="false">
+		<AsyncLogger name="org.hibernate.type.descriptor.sql.BasicBinder" level="info" additivity="false">
 			<AppenderRef ref="ConsoleAppender"/>
 			<AppenderRef ref="DataAppender"/>
 		</AsyncLogger>

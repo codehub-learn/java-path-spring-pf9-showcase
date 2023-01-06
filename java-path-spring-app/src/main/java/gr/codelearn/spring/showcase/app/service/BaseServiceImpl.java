@@ -47,10 +47,21 @@ public abstract class BaseServiceImpl<T extends BaseModel> extends AbstractLogCo
 
 	@Override
 	public void deleteById(final Long id) {
+		logger.trace("Deleting entity with id {}.", id);
+		if (exists(id)) {
+			getRepository().deleteById(id);
+		} /*else {
+			throw new NoSuchElementException("Could not perform delete operation to a non-existent object.");
+		}*/
+
+	}
+
+	/*@Override
+	public void deleteById(final Long id) {
 		final T clazzFound = getRepository().getReferenceById(id);
 		logger.trace("Deleting {}.", clazzFound);
 		getRepository().deleteById(id);
-	}
+	}*/
 
 	@Override
 	public boolean exists(final T clazz) {
@@ -71,6 +82,10 @@ public abstract class BaseServiceImpl<T extends BaseModel> extends AbstractLogCo
 
 	public T get(Long id) {
 		return getRepository().getReferenceById(id);
+	}
+
+	private boolean exists(Long id) {
+		return getRepository().existsById(id);
 	}
 	
 }

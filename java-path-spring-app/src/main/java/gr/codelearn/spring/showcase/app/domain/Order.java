@@ -25,7 +25,7 @@ import java.util.Set;
 @Table(name = "ORDERS", indexes = {@Index(columnList = "customer_id")})
 @SequenceGenerator(name = "idGenerator", sequenceName = "ORDERS_SEQ", initialValue = 1, allocationSize = 1)
 public class Order extends BaseModel {
-	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+	@ManyToOne(fetch = FetchType.EAGER, optional = false)
 	private Customer customer;
 
 	@Temporal(TemporalType.TIMESTAMP)
@@ -34,7 +34,7 @@ public class Order extends BaseModel {
 
 	@ToString.Exclude
 	@EqualsAndHashCode.Exclude
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
 	private final Set<OrderItem> orderItems = new HashSet<>();
 
 	@NotNull
